@@ -1,0 +1,311 @@
+#include <stdio.h>
+#include <math.h>
+#define PI 3.14
+
+
+char isim[50];
+
+void serbestDusme(float *yerCekimi,char **gezegenIsimleri)
+{
+    float t;
+    int i;
+
+    printf("\nSerbest Dusme Deneyi\n");
+    printf("profesor %s,Saniye cinsinden sureyi giriniz: ",isim);
+    scanf("%f",&t);
+
+    t=(t<0)? -t:t;
+
+    for(i=0;i<8;i++){
+        float h;
+        h=0.5*(*(yerCekimi+i))*t*t;
+
+        printf("Sayin profesor %s, %s gezegeninde kat edilen mesafe:%.2f metredir.\n",isim,*(gezegenIsimleri+i),h);
+    }
+}
+
+      void yukariAtis(float *yerCekimi,char **gezegenIsimleri)
+{
+    int i;
+    float ilkHiz;
+    printf("\nYukari Atis Deneyi\n");
+    printf("Profesor %s, Firlatilan cismin ilk hizini metre/saniye cinsinden giriniz:",isim);
+    scanf("%f",&ilkHiz);
+
+    ilkHiz=(ilkHiz<0)? -ilkHiz:ilkHiz;
+
+    for(i=0;i<8;i++){
+        float hMax;
+        hMax=(ilkHiz * ilkHiz)/(2*(*(yerCekimi + i)));
+
+        printf("Sayin profesor %s,%s gezegeninde cismin cikabilecegi maksimum yukseklik:%.2f metredir.\n",isim,*(gezegenIsimleri+i),hMax);
+
+    }
+
+}
+
+        void agirlikDeneyi(float *yerCekimi,char **gezegenIsimleri)
+{
+    int i;
+    float m;
+    printf("\nAgirlik Deneyi\n");
+    printf("profesor %s, Cismin kutlesini kilogram cinsinden giriniz: ",isim);
+    scanf("%f",&m);
+
+    m=(m<0)? -m:m;
+
+    for(i=0;i<8;i++){
+        float agirlik;
+        agirlik=m*(*(yerCekimi+i));
+
+        printf("sayin profesor %s,%s gezegeninde cismin agirligi:%.2f Newton'dur.\n",isim,*(gezegenIsimleri+i),agirlik);
+    }
+}
+
+
+
+    void kutleCekimselPotansiyelEnerji(float *yerCekimi,char **gezegenIsimleri)
+{
+    int i;
+    float h,m;
+
+    printf("\nKutle Cekimsel Potansiyel Enerji Deneyi\n");
+    printf("profesor %s, Cismin birakildigi yuksekligi metre cinsinden giriniz: ",isim);
+    scanf("%f",&h);
+    printf("profesor %s, cismin kutlesini kilogram cinsinden giriniz: ",isim);
+    scanf("%f",&m);
+
+    m=(m<0)? -m:m;
+    h=(h<0)? -h:h;
+
+    for(i=0;i<8;i++){
+        float kutleCekimselPotansiyelEnerji;
+        kutleCekimselPotansiyelEnerji=m*(*(yerCekimi+i))*h;
+
+        printf("sayin profesor %s,%s gezegeninde cismin kutle cekimsel potansiyel enerjisi:%.2f Joule'dur.\n",isim,*(gezegenIsimleri+i),kutleCekimselPotansiyelEnerji);
+
+    }
+}
+
+     void hidrostatikBasincDeneyi(float *yerCekimi,char **gezegenIsimleri)
+{
+    int i;
+    float siviBirimHacimKutlesi;
+    float derinlik;
+
+    printf("\nHidrostatik Basinc Deneyi\n");
+    printf("profesor %s, sivinin birim hacimdeki kutlesini kg/m^3 cinsinden giriniz:",isim);
+    scanf("%f",&siviBirimHacimKutlesi);
+    printf("profesor %s, sivinin derinligini metre cinsinden giriniz:",isim);
+    scanf("%f",&derinlik);
+
+    siviBirimHacimKutlesi=(siviBirimHacimKutlesi<0)? -siviBirimHacimKutlesi:siviBirimHacimKutlesi;
+    derinlik=(derinlik<0)? -derinlik:derinlik;
+    for(i=0;i<8;i++){
+        float hidrostatikBasinc;
+        hidrostatikBasinc=siviBirimHacimKutlesi*(*(yerCekimi+i))*derinlik;
+
+        printf("sayin profesor %s,%s gezegeninde sivinin temas yuzeyinin birim alanina uyguladigi dik kuvvet(hidrostatik basinc):%.2f Pascal'dir.\n",isim,*(gezegenIsimleri+i),hidrostatikBasinc);
+    }
+
+}
+
+     void arsimetKaldirmaKuvvetiDeneyi(float *yerCekimi,char **gezegenIsimleri)
+{
+    int i;
+    float siviBirimHacimKutlesi;
+    float batanHacim;
+
+    printf("\nArsimet Kaldirma Kuvveti Deneyi\n");
+    printf("profesor %s, sivinin birim hacimdeki kutlesini kg/m^3 cinsinden giriniz:",isim);
+    scanf("%f",&siviBirimHacimKutlesi);
+    printf("profesor %s, cismin batan hacmini m^3 cinsinden giriniz:",isim);
+    scanf("%f",&batanHacim);
+
+    siviBirimHacimKutlesi=(siviBirimHacimKutlesi<0)? -siviBirimHacimKutlesi:siviBirimHacimKutlesi;
+    batanHacim=(batanHacim<0)? -batanHacim:batanHacim;
+
+    for(i=0;i<8;i++){
+        float kaldirmaKuvveti;
+        kaldirmaKuvveti=siviBirimHacimKutlesi*(*(yerCekimi+i))*batanHacim;
+
+        printf("sayin profesor %s,%s gezegeninde sivi icindeki cisme uygulanan kaldirma kuvveti:%.2f Newton'dur.\n",isim,*(gezegenIsimleri+i),kaldirmaKuvveti);
+    }
+}
+
+
+     void basitSarkacPeriyodudeneyi(float *yerCekimi,char **gezegenIsimleri)
+{
+    int i;
+    float uzunluk;
+
+    printf("\nBasit Sarkac Periyodu Deneyi\n");
+    printf("profesor %s, sarkacin uzunlugunu metre cinsinden giriniz: ",isim);
+    scanf("%f",&uzunluk);
+
+    uzunluk=(uzunluk<0)? -uzunluk:uzunluk;
+
+    for(i=0;i<8;i++){
+        float periyot;
+        periyot=2*PI*sqrt(uzunluk/(*(yerCekimi+i)));
+
+        printf("sayin profesor %s,%s gezegeninde cismin periyodu:%.2f saniyedir.\n",isim,*(gezegenIsimleri+i),periyot);
+    }
+}
+
+
+     void sabitIpGerilmesiDeneyi(float *yerCekimi,char **gezegenIsimleri)
+{
+    int i;
+    float m;
+
+    printf("\nSabit Ip Gerilmesi Deneyi\n");
+    printf("profesor %s, cismin kutlesini kg cinsinden giriniz:",isim);
+    scanf("%f",&m);
+
+    m=(m<0)? -m:m;
+
+    for(i=0;i<8;i++){
+        float ipGerilmesi;
+        ipGerilmesi = m*(*(yerCekimi+i));
+
+        printf("sayin profesor %s,%s gezegeninde ip gerilme kuvvet:%.2f Newton'dur.\n",isim,*(gezegenIsimleri+i),ipGerilmesi);
+    }
+}
+
+
+    void asansorDeneyi(float *yerCekimi,char **gezegenIsimleri)
+{
+    int i,yon;
+    float a;
+    float m;
+    float N;
+
+    printf("\nAsansor Deneyi\n");
+
+    printf("profesor %s, cismin kutlesini kilogram cinsinden giriniz: ",isim);
+    scanf("%f",&m);
+    printf("profesor %s, asansorun ivmesinin metre/saniye^2 cinsinden giriniz: ",isim);
+    scanf("%f",&a);
+
+    printf("asansorun gidis yonunu seciniz\n");
+    printf("1-Yukari\n");
+    printf("2-Asagi\n");
+    printf("profesor %s, seciminizi giriniz: ",isim);
+    scanf("%d",&yon);
+
+    m=(m<0)? -m:m;
+    a=(a<0)? -a:a;
+
+    printf("\n");
+
+    for(i=0;i<8;i++){
+        float N;
+
+        if(yon == 1){
+            N=m*((*(yerCekimi+i))+a);
+        }else if(yon==2)
+        {
+            N=m*((*(yerCekimi+i))-a);
+        }
+        else{
+            printf("Gecersiz Yon Secimi!\n\n");
+            break;
+        }
+        N=(N<0)? 0:N;
+        printf("sayin profesor %s,gezegen %s icin cismin etkin agirligi: %.2f Newton'dur.\n ",isim,*(gezegenIsimleri+i),N);
+    }
+}
+
+
+
+
+void menu();
+
+
+int main()
+{
+
+    int secim;
+
+    char *gezegenIsimleri[8]={"Merkur","Venus","Dunya","Mars","Jupiter","Saturn","Uranus","Neptun"};
+    float yerCekimi[8]={3.7, 8.87, 9.81, 3.71, 24.79, 10.44, 8.69, 11.15};
+
+    printf("Lutfen adinizi giriniz: ");
+    scanf("%s",isim);
+
+
+        while(1){
+        menu();
+        printf("seciminizi girin:");
+        scanf("%d",&secim);
+
+        if(secim==-1){
+            printf("\nprogram sonlandiriliyor...\n");
+            break;
+        }
+
+        switch(secim){
+        case 1:
+            serbestDusme(yerCekimi,gezegenIsimleri);
+            break;
+
+        case 2:
+            yukariAtis(yerCekimi,gezegenIsimleri);
+            break;
+
+        case 3:
+            agirlikDeneyi(yerCekimi,gezegenIsimleri);
+            break;
+
+        case 4:
+            kutleCekimselPotansiyelEnerji(yerCekimi,gezegenIsimleri);
+            break;
+
+        case 5:
+            hidrostatikBasincDeneyi(yerCekimi,gezegenIsimleri);
+            break;
+
+        case 6:
+            arsimetKaldirmaKuvvetiDeneyi(yerCekimi,gezegenIsimleri);
+            break;
+
+        case 7:
+            basitSarkacPeriyodudeneyi(yerCekimi,gezegenIsimleri);
+            break;
+
+        case 8:
+            sabitIpGerilmesiDeneyi(yerCekimi,gezegenIsimleri);
+            break;
+
+        case 9:
+            asansorDeneyi(yerCekimi,gezegenIsimleri);
+            break;
+
+        default:
+            printf("gecersiz secim!tekrar deneyiniz!\n");
+
+        }
+    }
+
+
+    return 0;
+}
+
+void menu()
+{
+    printf("\n DENEY SECENEKLERI \n");
+    printf("1-Serbest Dusme Deneyi\n");
+    printf("2-Yukari Atis Deneyi\n");
+    printf("3-Agirlik Deneyi\n");
+    printf("4-Kutlecekimsel Potansiyel\n");
+    printf("5-Hidrostatik Basinc Deneyi\n");
+    printf("6-Arsimet Kaldirma Kuvveti Deneyi\n");
+    printf("7-Basit Sarkac Deneyi\n");
+    printf("8-Sabit Ip Gerilmesi Deneyi\n");
+    printf("9-Asansor Deneyi\n");
+    printf("-1)Cikis\n");
+
+
+
+}
